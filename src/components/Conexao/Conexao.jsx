@@ -4,7 +4,7 @@ import { TextField, Button, Typography } from "@material-ui/core";
 class Conexao extends Component {
   constructor(props) {
     super(props);
-    this.state = { url: "", error: "teste" };
+    this.state = { url: "", error: "" };
   }
 
   tentarConexao(event) {

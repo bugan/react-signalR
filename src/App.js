@@ -25,6 +25,7 @@ function App() {
               criarCard();
               setCount(contador + 1);
             }}
+            disabled={conexao == null}
             variant="contained"
             color="primary"
           >
@@ -37,6 +38,7 @@ function App() {
               deletarCard(contador);
               setCount(contador - 1);
             }}
+            disabled={conexao == null}
             variant="contained"
             color="secondary"
           >
