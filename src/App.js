@@ -1,25 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { AppBar, Toolbar, Typography, Button, Grid } from "@material-ui/core";
+import { conectar, conexao } from "./Models/Conexao";
+import { criarCard, deletarCard, cards } from "./Models/Card";
+import "./App.css";
+import Conexao from "./components/Conexao";
+import Card from "./components/Cards";
 
 function App() {
+  const [contador, setCount] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AppBar position="relative" color="primary">
+        <Toolbar>
+          <Typography variant="h6">SignalR</Typography>
+        </Toolbar>
+      </AppBar>
+      <Grid container spacing={3} margin="normal">
+        <Grid item xs>
+          <Conexao conectar={conectar} />
+        </Grid>
+        <Grid item>
+          <Button
+            onClick={() => {
+              criarCard();
+              setCount(contador + 1);
+            }}
+            variant="contained"
+            color="primary"
+          >
+            Criar Card
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            onClick={() => {
+              deletarCard(contador);
+              setCount(contador - 1);
+            }}
+            variant="contained"
+            color="secondary"
+          >
+            Deletar Card
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          {cards.map((dados, index) => {
+            console.log(dados);
+            return <Card dados={dados} key={index} />;
+          })}
+        </Grid>
+      </Grid>
+    </>
   );
 }
 
